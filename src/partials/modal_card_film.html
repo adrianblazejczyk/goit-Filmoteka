@@ -1,15 +1,19 @@
 <h1 class="modal_film_card">Karta filmu</h1>
 <div class="modal-film__container">
-  <div class="modal-film__card">
-    <button type="button" class="modal-film__button">
+    <button type="button" class="modal-film__button-close">X
       <!-- <svg class="modal-film__close-icon">
         <use href="./images/icons.svg#icon-close-black-18dp-2-1"></use>
       </svg> -->
     </button>
+  <div class="modal-film__card">
+              
     <ul class="modal-film__list">
+  
       <li class="modal-film__item">
         <img class="modal-film__img" src="./images/Rectangle 18.jpg" alt="" />
       </li>
+      <div class="modal-film__wrapper">
+      
       <li class="modal-film__item">
         <h2 class="modal-film__title">A FISTFUL OF LEAD</p>
       </li>
@@ -22,19 +26,19 @@
       </ul>
       <ul>
         <div class="modal-film__rate" >
-        <li class="modal-film__rate-content">7.3</li>
-        <li class="modal-film__rate-content">/</li>
-        <li class="modal-film__rate-content">1260</li>
+        <li class="modal-film__rate-content vote">7.3</li>
+        <li class="modal-film__rate-content slash">/</li>
+        <li class="modal-film__rate-content votes">1260</li>
         </div>
         <li class="modal-film__rate-content">100.2</li>
         <li class="modal-film__rate-content">A FISTFUL OF LEAD</li>
         <li class="modal-film__rate-content">Western</li>
       </ul>
       </div>
-      <li class="modal-film__item">
-        <p>About</p>
+      <li class="modal-film__about">
+        <p>ABOUT</p>
       </li>
-      <li class="modal-film__item">
+      <li class="modal-film__text">
         <p>
           Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the
           most corrupt settlement of the gold rush towns. But not all goes to plan one is killed and
@@ -44,10 +48,11 @@
           filled with lead... they’ve been double crossed – but by who and how?
         </p>
       </li>
-    </ul>
-    <div class="modal-film__button">
+      <div class="modal-film__button">
       <button class="btn__modal" type="button">ADD TO WATCHED</button>
       <button class="btn__modal" type="button">ADD TO QUEUE</button>
     </div>
+      </div>
+    </ul>
   </div>
 </div>

@@ -52,12 +52,10 @@
     @include mq(tablet) {
       width: 125.032px;
       height: 44px;
-      margin-right: 14.94px;
     }
     @include mq(desktop) {
       width: 136px;
       height: 44px;
-      margin-right: 15px;
     }
 
     &:focus,
