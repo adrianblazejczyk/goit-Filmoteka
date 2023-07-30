@@ -1,6 +1,6 @@
 /************************************************************************************************************************************************/
 import * as api from './JS/api_films_database';
-import * as filmsCard from './JS/film_cards';
+//import * as filmsCard from './JS/film_cards';
 import * as functionsProject from './JS/info_functions';
 import * as modalCardFilm from './JS/modal_card_film';
 import './sass/main.scss';
@@ -21,7 +21,7 @@ async function searchFilms(eve) {
   eve.preventDefault();
   try {
     const popularFilms = await api.fetchMoviesByName(input.value, 1);
-    filmsCard.createFilmCards(popularFilms);
+    //filmsCard.createFilmCards(popularFilms);
     console.log(popularFilms);
   } catch (error) {
     console.log(error);
@@ -31,7 +31,7 @@ async function searchFilms(eve) {
 async function loadPopularFilms(page) {
   try {
     const popularFilms = await api.fetchMovies(page);
-    filmsCard.createFilmCards(popularFilms);
+    //filmsCard.createFilmCards(popularFilms);
     console.log(popularFilms);
   } catch (error) {
     console.log(error);
