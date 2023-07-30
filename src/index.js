@@ -4,6 +4,7 @@ import * as filmsCard from './JS/film_cards';
 import * as functionsProject from './JS/info_functions';
 import * as modalCardFilm from './JS/modal_card_film';
 import * as studentsInfo from './JS/modal_footer';
+
 import './sass/main.scss';
 
 /************************************************************************************************************************************************/
