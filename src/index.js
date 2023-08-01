@@ -6,6 +6,7 @@ import * as modalCardFilm from './JS/modal_card_film';
 import * as studentsInfo from './JS/modal_footer';
 
 import './sass/main.scss';
+import {substractingArrow,addingArrow,selectPages,createPageHome} from './JS/select_page'
 
 /************************************************************************************************************************************************/
 const searchForm = document.querySelector('#search-form');
@@ -13,7 +14,9 @@ const input = document.querySelector('.search-form__input');
 const cardsFilm = document.querySelector('.section-films');
 //const studentsModal = document.querySelector('#studentsModal');
 // const spinner = document.querySelector('.loader__div');
-
+let plusArrow = document.querySelector('#plus');
+let  minusArrow = document.querySelector('#minus');
+let boxPages = document.querySelector('.page');
 /************************************************************************************************************************************************/
 searchForm.addEventListener('submit', searchFilms);
 cardsFilm.addEventListener('click', openCardFilm);
@@ -106,3 +109,10 @@ async function openCardFilm(eve) {
 
 /************************************************************************************************************************************************/
 loadPopularFilms();
+createPageHome(500, 1);
+plusArrow.addEventListener("click", addingArrow)
+    boxPages.addEventListener("click", selectPages)
+
+    minusArrow.addEventListener("click",substractingArrow)
+
+        export{loadPopularFilms}

@@ -1,61 +1,122 @@
-// import { Pagination } from 'tui-pagination';
+let arrowPage = 1;
+const cardsFilm = document.querySelector('.section-films');
+const paginacjaHome = document.querySelector('.page');
+let plusArrow = document.querySelector('#plus');
+let  minusArrow = document.querySelector('#minus');
+import {loadPopularFilms} from '../index'
+// ********************************************************************************************************************************************
+function createPage(numberOfPages, selectPage) {
+    let data = [];
+    if (numberOfPages === 1) {
+        plusArrow.classList.add('hidden');
+        minusArrow.classList.add('hidden');
+      data.push(`<li class="page__numbers">${1}</li>`);
+      return data.join('');
+    } else if (numberOfPages < 8) {
+        plusArrow.classList.remove('hidden');
+        minusArrow.classList.remove('hidden');
+      for (let index = 1; index < numberOfPages + 1; index++) {
+        if (index == selectPage) {
+          data.push(`<li class="page__numbers ">${index}</li>`);
+        } else {
+          data.push(`<li class="page__numbers">${index}</li>`);
+        }
+      }
+      
+      
+      return data.join('');
+    } else {
+      //***************************************************************************
+      plusArrow.classList.remove('hidden');
+      minusArrow.classList.remove('hidden');
+      if (selectPage == 1) {
+        data.push(`<li class="page__numbers ">${1}</li>`);
+      } else {
+        data.push(`<li class="page__numbers">${1}</li>`);
+      }
+  
+      data.push(`<li class="page__dots"> ... </li>`);
+      // numberOfPages/2 -3
+      let startNumber = Math.floor(numberOfPages / 2 - 2);
+      if (selectPage > 1) {
+        startNumber = selectPage - 2;
+      }
+  
+      stopNumber = startNumber + 5;
+      if (numberOfPages < selectPage + 4) {
+        startNumber = numberOfPages - 5;
+        stopNumber = numberOfPages;
+      }
+      if (selectPage < 4 && selectPage !== 1) {
+        startNumber = 2;
+        stopNumber = startNumber + 5;
+      }
+  
+      for (let index = startNumber; index < stopNumber; index++) {
+        if (index == selectPage) {
+          data.push(`<li class="page__numbers ">${index}</li>`);
+        } else {
+          data.push(`<li class="page__numbers">${index}</li>`);
+        }
+      }
+      data.push(`<li class="page__dots"> ... </li>`);
+      if (selectPage == numberOfPages) {
+        data.push(`<li class="page__numbers ">${numberOfPages}</li>`);
+      } else {
+        data.push(`<li class="page__numbers">${numberOfPages}</li>`);
+      }
+  
+  
+      //***************************************************************************
+      return data.join('');
+    }
+  }
+  
+  export function createPageHome(numbers, selectPage) {
+    paginacjaHome.innerHTML = createPage(numbers, selectPage);
+  }
+  
+  export function nextPage() {
+    createPageHome(20, ++arrowPage);
+  }
+  export function previousePage() {
+    createPageHome(20, --arrowPage);
+  }
+function selectPages(event){
+     
+    const selectedPage = event.target.textContent;
+    cardsFilm.innerHTML = ''
+     arrowPage = parseInt(selectedPage)
+    
+    createPageHome(500, arrowPage);
+     loadPopularFilms(arrowPage)
+     
+   }
 
-// const Pagination = require('tui-pagination');
+function substractingArrow(){
+    if (arrowPage === 1){
+        return
+       }
+            arrowPage -= 1;
+            
+            cardsFilm.innerHTML = '';
+            console.log(arrowPage)
+            createPageHome(500, arrowPage);
+           console.log(loadPopularFilms(arrowPage))
+           loadPopularFilms(arrowPage)
+}
+function addingArrow(){
+    if (arrowPage === 500){
+        return
+       }
+           arrowPage += 1;
+           
+           cardsFilm.innerHTML = '';
+           console.log(arrowPage)
+           createPageHome(500, arrowPage);
+          console.log(loadPopularFilms(arrowPage))
+          loadPopularFilms(arrowPage)
+          
+}
+export{substractingArrow,addingArrow,selectPages}
 
-// const container = document.querySelector('page');
-// const myPagination = new Pagination(container, {
-//   // Total number of items
-//   totalItems: 30,
-//   // Items per page
-//   itemsPerPage: 18,
-//   // Visible pages
-//   visiblePages: 7,
-//   // Current page
-//   page: 1,
-//   // center aligned
-//   centerAlign: true,
-//   // default classes
-//   firstItemClassName: 'tui-first-child',
-//   lastItemClassName: 'tui-last-child',
-//   // enable usage statistics
-//   usageStatistics: true,
-// });
-
-import { Pagination } from 'tui-pagination';
-// Pobierz elementy DOM
-
-const paginationList = document.getElementById('paginationList');
-const page = document.querySelector('.page');
-
-// Imitacja danych, które mogą pochodzić z serwera
-const totalCount = 30;
-const itemsPerPage = 18;
-const totalPage = Math.ceil(totalCount / itemsPerPage);
-
-// Opcje dla paginacji
-const options = {
-  totalItems: totalCount,
-  itemsPerPage: itemsPerPage,
-  visiblePages: 5,
-  page: 1,
-  centerAlign: true,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<li class="tui-page-btn">{{page}}</li>',
-    currentPage: '<li class="tui-page-btn tui-is-selected">{{page}}</li>',
-    moveButton: '<li class="tui-page-btn tui-{{type}}">{{type}}</li>',
-    disabledMoveButton: '<li class="tui-page-btn tui-is-disabled tui-{{type}}">{{type}}</li>',
-  },
-};
-
-// Inicjalizacja paginacji
-const pagination = new tui.Pagination(paginationList, options);
-
-// Obsługa zmiany strony
-pagination.on('afterMove', eventData => {
-  'Aktualna strona:', eventData.page;
-});
-// Tutaj możesz wykonać żądanie do serwera, aby pobrać odpowiednie dane dla danej strony
-
-createPagination(20);
